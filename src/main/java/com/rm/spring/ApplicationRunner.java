@@ -1,22 +1,15 @@
 package com.rm.spring;
 
-import com.rm.spring.ioc.Container;
-import com.rm.spring.service.UserService;
+import com.rm.spring.database.pool.ConnectionPool;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class ApplicationRunner {
 
     public static void main(String[] args) {
 
-        Container container = new Container();
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("application.xml");
 
-//        ConnectionPool connectionPool = new ConnectionPool();
-//        UserRepository userRepository = new UserRepository(connectionPool);
-//        CompanyRepository companyRepository = new CompanyRepository(connectionPool);
-//        UserService userService = new UserService(userRepository, companyRepository);
-
-//        ConnectionPool connectionPool = container.get(ConnectionPool.class);
-//        UserRepository userRepository = container.get(UserRepository.class);
-//        CompanyRepository companyRepository = container.get(CompanyRepository.class);
-        UserService userService = container.get(UserService.class);
+        ConnectionPool connectionPool = context.getBean("pool1", ConnectionPool.class);
+        System.out.println(connectionPool);
     }
 }
