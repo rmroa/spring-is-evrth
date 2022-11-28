@@ -18,9 +18,10 @@
                 <entry key="password" value="12345"/>
             </map>
         </constructor-arg>
-
     </bean>
-    <!--    <bean id="pool2" class="com.rm.spring.database.pool.ConnectionPool"/>-->
 
+    <bean id="companyRepository" class="com.rm.spring.database.repository.CompanyRepository" factory-method="of">
+        <constructor-arg ref="pool1"/>
+    </bean>
 
 </beans>

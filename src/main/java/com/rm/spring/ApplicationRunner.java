@@ -1,6 +1,7 @@
 package com.rm.spring;
 
 import com.rm.spring.database.pool.ConnectionPool;
+import com.rm.spring.database.repository.CompanyRepository;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class ApplicationRunner {
@@ -11,5 +12,8 @@ public class ApplicationRunner {
 
         ConnectionPool connectionPool = context.getBean("pool1", ConnectionPool.class);
         System.out.println(connectionPool);
+
+        CompanyRepository companyRepository = context.getBean("companyRepository", CompanyRepository.class);
+        System.out.println(companyRepository);
     }
 }
