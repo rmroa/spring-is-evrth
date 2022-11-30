@@ -21,4 +21,12 @@ public class ConnectionPool {
     public void setProperties(Map<String, Object> properties) {
         this.properties = properties;
     }
+
+    public void init() {
+        System.out.println("Init connection pool");
+    }
+
+    public void destroy() {
+        System.out.println("Clean connection pool");
+    }
 }
