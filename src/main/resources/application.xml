@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/context
+                            http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <context:property-placeholder location="classpath:application.properties"/>
+
+    <!--    <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">-->
+    <!--        <property name="locations" value="classpath:application.properties"/>-->
+    <!--    </bean>-->
 
     <bean id="pool1" class="com.rm.spring.database.pool.ConnectionPool"
           init-method="init"
           destroy-method="destroy">
-        <constructor-arg name="username" value="postgres"/>
-        <constructor-arg name="poolSize" value="10"/>
+        <constructor-arg name="username" value="${db.username}"/>
+        <constructor-arg name="poolSize" value="${db.pool.size}"/>
         <constructor-arg name="args">
             <list>
                 <value>--arg1=value1</value>
@@ -21,6 +31,7 @@
             <map>
                 <entry key="url" value="postgresurl"/>
                 <entry key="password" value="12345"/>
+                <entry key="hosts" value="#{'${db.hosts}'.split(',')}"/>
             </map>
         </property>
     </bean>
