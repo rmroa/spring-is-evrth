@@ -13,6 +13,9 @@
     <!--        <property name="locations" value="classpath:application.properties"/>-->
     <!--    </bean>-->
 
+    <bean class="com.rm.spring.bfpp.LongBeanFactoryPostProcessor"/>
+    <bean class="com.rm.spring.bfpp.VerifyPropertyBeanFactoryPostProcessor"/>
+
     <bean id="pool1" class="com.rm.spring.database.pool.ConnectionPool"
           init-method="init"
           destroy-method="destroy">
